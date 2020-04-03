@@ -10,11 +10,12 @@ void function () {
     }
 
     function rgbColorFromHexString(hexString) {
-        // TODO
+        var match = /\#(..)(..)(..)/.exec(hexString)
+
         return {
-            red: 0,
-            green: 0,
-            blue: 0,
+            red:    parseInt(match[1], 16),
+            green:  parseInt(match[2], 16),
+            blue:   parseInt(match[3], 16),
         }
     }
 
