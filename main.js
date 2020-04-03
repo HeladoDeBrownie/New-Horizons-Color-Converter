@@ -64,7 +64,7 @@ void function () {
     }
 
     function formatAcnhColor(acnhColor) {
-        return 'Hue: ' + String(acnhColor.hue) + '\nSaturation: ' + String(acnhColor.saturation) + '\nValue: ' + String(acnhColor.value)
+        return 'Hue: ' + String(acnhColor.hue) + '\nVividness: ' + String(acnhColor.saturation) + '\nBrightness: ' + String(acnhColor.value)
     }
 
     var $ = document.getElementById.bind(document)
