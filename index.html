@@ -7,8 +7,18 @@
     </head>
 
     <body>
-        <p><input id="color" type="color"></p>
-        <p><pre id="result"></pre></p>
+        <h1>New Horizons Color Converter</h1>
+        <p>Select a color: <input id="color" type="color"></p>
+        <p>The components of the closest matching in-game color are:</p>
+        <table>
+            <tr><td>Hue</td><td id="hue"></td></tr>
+            <tr><td>Vividness</td><td id="vividness"></td></tr>
+            <tr><td>Brightness</td><td id="brightness"></td></tr>
+        </table>
+        <h2>How to use this information</h2>
+        <p>The color picker interface in ACNH lets you choose from 30 hues, 15 vividnesses, and 15 brightnesses. The values above are given as the number of ticks to move over from the left. So, the leftmost choice corresponds to 0, the one just to the right of that is 1, the one to the right of <em>that</em> is 2, and so on.</p>
+        <p>In short, to enter a color component, move the corresponding slider all the way to the left. Then, press right the number of times indicated. Do this for each of the three components and you should end up with a color reasonably close to the RGB color you picked.</p>
+        <p>There are fewer ACNH colors than RGB colors, so some colors may look a little off. This is an inherent limitation of trying to enter specific RGB colors into the game. It's also very possible that this converter is imperfect; I tested it by eyeballing it, but the human eye is fallible.</p>
         <script src="main.js"></script>
     </body>
 </html>

@@ -2,11 +2,14 @@ void function () {
     'use strict'
 
     function render() {
-        $('result').textContent = convert($('color').value)
+        var acnhColor = convert($('color').value)
+        $('hue').textContent = acnhColor.hue
+        $('vividness').textContent = acnhColor.saturation
+        $('brightness').textContent = acnhColor.value
     }
 
     function convert(hexString) {
-        return formatAcnhColor(acnhColorFromHsvColor(hsvColorFromRgbColor(rgbColorFromHexString(hexString))))
+        return acnhColorFromHsvColor(hsvColorFromRgbColor(rgbColorFromHexString(hexString)))
     }
 
     function rgbColorFromHexString(hexString) {
@@ -61,10 +64,6 @@ void function () {
             saturation: Math.round(hsvColor.saturation * 14),
             value:      Math.round(hsvColor.value * 14),
         }
-    }
-
-    function formatAcnhColor(acnhColor) {
-        return 'Hue: ' + String(acnhColor.hue) + '\nVividness: ' + String(acnhColor.saturation) + '\nBrightness: ' + String(acnhColor.value)
     }
 
     var $ = document.getElementById.bind(document)
