@@ -55,10 +55,11 @@ void function () {
     }
 
     function acnhColorFromHsvColor(hsvColor) {
+        var unnormalizedHue = Math.round(hsvColor.hue / 12)
         return {
-            hue:        Math.round(hsvColor.hue / 12),
-            saturation: Math.round(hsvColor.saturation * 15),
-            value:      Math.round(hsvColor.value * 15),
+            hue:        unnormalizedHue == 30 ? 0 : unnormalizedHue,
+            saturation: Math.round(hsvColor.saturation * 14),
+            value:      Math.round(hsvColor.value * 14),
         }
     }
 
