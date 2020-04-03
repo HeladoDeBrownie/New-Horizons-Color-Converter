@@ -1,21 +1,27 @@
 void function () {
     'use strict'
 
-    function render() {
-        var acnhColor = convert($('color').value)
-        $('hue').textContent = acnhColor.hue
-        $('vividness').textContent = acnhColor.saturation
-        $('brightness').textContent = acnhColor.value
+    function render(colorString) {
+        var acnhColor = convert(colorString)
+
+        if (acnhColor === null) {
+            $('hue').textContent = $('vividness').textContent = $('brightness').textContent = ''
+        } else {
+            $('hue').textContent = acnhColor.hue
+            $('vividness').textContent = acnhColor.saturation
+            $('brightness').textContent = acnhColor.value
+        }
     }
 
     function convert(hexString) {
-        return acnhColorFromHsvColor(hsvColorFromRgbColor(rgbColorFromHexString(hexString)))
+        var rgbColor = rgbColorFromHexString(hexString)
+        return rgbColor === null ? null : acnhColorFromHsvColor(hsvColorFromRgbColor(rgbColor))
     }
 
     function rgbColorFromHexString(hexString) {
-        var match = /\#(..)(..)(..)/.exec(hexString)
+        var match = /\#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/.exec(hexString)
 
-        return {
+        return match === null ? null : {
             red:    parseInt(match[1], 16),
             green:  parseInt(match[2], 16),
             blue:   parseInt(match[3], 16),
@@ -66,8 +72,22 @@ void function () {
         }
     }
 
+    function normalizeColorString(colorString) {
+        return '#' + colorString.replace(/^\#/, '').toLowerCase()
+    }
+
     var $ = document.getElementById.bind(document)
 
-    $('color').addEventListener('input', render)
-    render()
+    $('color-text').addEventListener('input', function () {
+        $('color-color').value = normalizeColorString(this.value)
+        render(this.value)
+    })
+
+    $('color-color').addEventListener('input', function () {
+        $('color-text').value = this.value
+        render(this.value)
+    })
+
+    $('color-color').value = normalizeColorString($('color-text').value)
+    render($('color-text').value)
 }()
