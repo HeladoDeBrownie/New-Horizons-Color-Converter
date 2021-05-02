@@ -19,12 +19,12 @@ void function () {
     }
 
     function rgbColorFromHexString(hexString) {
-        var match = /\#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/.exec(hexString)
+        var hexValues = hexString.replace(/^\#/, '')
 
-        return match === null ? null : {
-            red:    parseInt(match[1], 16),
-            green:  parseInt(match[2], 16),
-            blue:   parseInt(match[3], 16),
+        return hexValues.length !== 6 ? null : {
+            red: parseInt(hexValues.substring(0, 2), 16),
+            green: parseInt(hexValues.substring(2, 4), 16),
+            blue: parseInt(hexValues.substring(4, 6), 16),
         }
     }
 
