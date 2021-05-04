@@ -19,7 +19,7 @@ void function () {
     }
 
     function rgbColorFromHexString(hexString) {
-        var match = /\#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/.exec(hexString)
+        var match = /\#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i.exec(hexString)
 
         return match === null ? null : {
             red:    parseInt(match[1], 16),
